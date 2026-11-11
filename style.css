@@ -581,6 +581,7 @@ h1, h2, h3, h4 { font-family: var(--head); color: var(--text); line-height: 1.25
 .form-status strong { display: block; color: var(--text); font-family: var(--head); }
 .form-status span { display: block; margin-top: 2px; color: var(--text-2); overflow-wrap: anywhere; }
 .form-status a { color: var(--mint); text-decoration: underline; }
+.form-status .form-reason { color: #ffb4a6; }
 .form-status.ok { border-color: rgba(95,227,192,.4); background: rgba(95,227,192,.07); }
 .form-status.ok > i { color: var(--mint); }
 .form-status.err { border-color: rgba(255,140,120,.4); background: rgba(255,140,120,.06); }

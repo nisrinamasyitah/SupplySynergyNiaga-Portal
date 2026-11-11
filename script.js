@@ -125,6 +125,13 @@
         }
         function esc(t) { return String(t).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
 
+        function failed(mailto, reason) {
+            show('err', '<i class="fas fa-exclamation-circle"></i><div><strong>Your enquiry could not be sent.</strong>' +
+                 (reason ? '<span class="form-reason">' + esc(reason) + '</span>' : '') +
+                 '<span>Please <a href="' + mailto + '">send it by email instead</a> (your details are already filled in), ' +
+                 'or WhatsApp us at <a href="https://wa.me/601114945722" target="_blank" rel="noopener">+60 11-1494 5722</a>.</span></div>');
+        }
+
         form.addEventListener('submit', function (e) {
             e.preventDefault();
             if (form._honey && form._honey.value) return;          // bot filled the hidden field
@@ -136,6 +143,12 @@
             var body = 'Name: ' + data.name + '\nCompany: ' + data.company + '\nEmail: ' + data.email +
                        '\nPhone: ' + (data.phone || '-') + '\nService needed: ' + data.service + '\n\nDetails:\n' + data.message;
             var mailto = 'mailto:' + TO + '?subject=' + encodeURIComponent(data._subject) + '&body=' + encodeURIComponent(body);
+
+            // the form service only accepts enquiries from the live website, not from a file opened on a computer
+            if (location.protocol === 'file:') {
+                failed(mailto, 'This page is opened as a file on this computer. The form only sends from the live website.');
+                return;
+            }
 
             button.disabled = true;
             button.innerHTML = 'Sending… <i class="fas fa-circle-notch fa-spin"></i>';
@@ -153,13 +166,14 @@
                          '<span>A confirmation has been sent to ' + esc(data.email) + '. Our team will get back to you as soon as possible.</span></div>');
                     form.reset();
                 } else {
-                    throw new Error(res.message || 'not sent');
+                    // e.g. the form has not been activated yet: show the service's own explanation
+                    failed(mailto, /activat/i.test(res.message || '')
+                        ? 'The enquiry form is still being set up (activation pending).'
+                        : (res.message || 'The form service did not accept the enquiry.'));
                 }
             })
             .catch(function () {
-                show('err', '<i class="fas fa-exclamation-circle"></i><div><strong>Your enquiry could not be sent right now.</strong>' +
-                     '<span>Please <a href="' + mailto + '">send it by email instead</a> (your details are already filled in), ' +
-                     'or WhatsApp us at <a href="https://wa.me/601114945722" target="_blank" rel="noopener">+60 11-1494 5722</a>.</span></div>');
+                failed(mailto, 'The connection to the form service failed. Please check your internet connection.');
             })
             .then(function () {
                 button.disabled = false;
