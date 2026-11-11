@@ -35,7 +35,8 @@
     function moveIndicator(link) {
         if (!indicator) return;
         if (!link) { indicator.classList.remove('show'); return; }
-        var left = link.getBoundingClientRect().left - nav.getBoundingClientRect().left;   // works inside dropdown wrappers too
+        var box = indicator.offsetParent || nav;   // the element the indicator is positioned inside
+        var left = link.getBoundingClientRect().left - box.getBoundingClientRect().left;   // works inside dropdown wrappers too
         indicator.style.width = link.offsetWidth + 'px';
         indicator.style.transform = 'translateX(' + left + 'px)';
         indicator.classList.add('show');
@@ -128,7 +129,7 @@
     var targets = document.querySelectorAll('.sec-head, .sec-title, .profile-card, .about-body, .cred, .role, .str, .company, .contact-box, ' +
         '.biz-facts, .service, .values, .project, .process, .md-card, .md-letter, .marquee, .location, .vm-card, .join-card, ' +
         '.segment, .facts-grid, .leader, .info-table, .svc-visual, .industries > div, .logo-grid, .apply > div, ' +
-        '.pillar, .value, .biz-about > div, .legal-body, .contact-box');
+        '.value, .biz-about > div, .legal-body, .contact-box, .sec-intro, .values-row, .divisions, .leader-feature, .docs, .pm-row');
     if ('IntersectionObserver' in window && !reduceMotion) {
         var io = new IntersectionObserver(function (entries) {
             entries.forEach(function (e) {
