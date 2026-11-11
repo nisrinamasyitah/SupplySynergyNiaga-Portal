@@ -83,6 +83,8 @@
         document.body.style.overflow = open ? 'hidden' : '';
     }
     menu.addEventListener('click', function () { setMenu(!nav.classList.contains('open')); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && nav.classList.contains('open')) setMenu(false); });
+    window.addEventListener('resize', function () { if (window.innerWidth > 960 && nav.classList.contains('open')) setMenu(false); });
     nav.querySelectorAll('a').forEach(function (a) {
         a.addEventListener('click', function () { setMenu(false); });
     });
