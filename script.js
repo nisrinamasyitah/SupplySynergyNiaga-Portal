@@ -109,6 +109,65 @@
     }
     if (!reduceMotion) document.querySelectorAll('.pm-track').forEach(startPartnerRow);
 
+    // contact form: send in the background through FormSubmit, show the result on the page,
+    // and fall back to a pre-filled email if sending fails, so no enquiry is lost.
+    var form = document.getElementById('enquiryForm');
+    if (form && window.fetch) {
+        var status = document.getElementById('formStatus');
+        var button = form.querySelector('button[type="submit"]');
+        var buttonHTML = button.innerHTML;
+        var TO = 'supplysynergymy@gmail.com';
+
+        function show(kind, html) {
+            status.className = 'form-status ' + kind;
+            status.innerHTML = html;
+            status.hidden = false;
+        }
+        function esc(t) { return String(t).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            if (form._honey && form._honey.value) return;          // bot filled the hidden field
+
+            var data = {};
+            new FormData(form).forEach(function (v, k) { data[k] = v; });
+            data._subject = 'Quotation request: ' + data.service + ' – ' + data.company;
+
+            var body = 'Name: ' + data.name + '\nCompany: ' + data.company + '\nEmail: ' + data.email +
+                       '\nPhone: ' + (data.phone || '-') + '\nService needed: ' + data.service + '\n\nDetails:\n' + data.message;
+            var mailto = 'mailto:' + TO + '?subject=' + encodeURIComponent(data._subject) + '&body=' + encodeURIComponent(body);
+
+            button.disabled = true;
+            button.innerHTML = 'Sending… <i class="fas fa-circle-notch fa-spin"></i>';
+            status.hidden = true;
+
+            fetch('https://formsubmit.co/ajax/' + TO, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                body: JSON.stringify(data)
+            })
+            .then(function (r) { return r.json(); })
+            .then(function (res) {
+                if (String(res.success) === 'true') {
+                    show('ok', '<i class="fas fa-check-circle"></i><div><strong>Thank you, ' + esc(data.name) + '. Your enquiry has been sent.</strong>' +
+                         '<span>A confirmation has been sent to ' + esc(data.email) + '. Our team will get back to you as soon as possible.</span></div>');
+                    form.reset();
+                } else {
+                    throw new Error(res.message || 'not sent');
+                }
+            })
+            .catch(function () {
+                show('err', '<i class="fas fa-exclamation-circle"></i><div><strong>Your enquiry could not be sent right now.</strong>' +
+                     '<span>Please <a href="' + mailto + '">send it by email instead</a> (your details are already filled in), ' +
+                     'or WhatsApp us at <a href="https://wa.me/601114945722" target="_blank" rel="noopener">+60 11-1494 5722</a>.</span></div>');
+            })
+            .then(function () {
+                button.disabled = false;
+                button.innerHTML = buttonHTML;
+            });
+        });
+    }
+
     // typing line under the name
     var typedEl = document.getElementById('typed');
     var roles = ['Managing Director', 'Business Leader', 'Entrepreneur', 'Strategic Partner'];

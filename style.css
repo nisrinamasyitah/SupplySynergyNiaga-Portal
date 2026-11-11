@@ -574,6 +574,17 @@ h1, h2, h3, h4 { font-family: var(--head); color: var(--text); line-height: 1.25
 .contact-form label.consent a { color: var(--mint); text-decoration: underline; }
 .contact-form .btn { justify-self: start; margin-top: 4px; }
 .hp { position: absolute; left: -9999px; }
+.contact-form button[disabled] { opacity: .7; cursor: wait; }
+.form-status { display: flex; gap: 14px; align-items: flex-start; padding: 16px 18px; border: 1px solid; border-radius: var(--r); font-size: 14.5px; line-height: 1.6; }
+.form-status[hidden] { display: none; }
+.form-status > i { font-size: 18px; margin-top: 2px; }
+.form-status strong { display: block; color: var(--text); font-family: var(--head); }
+.form-status span { display: block; margin-top: 2px; color: var(--text-2); overflow-wrap: anywhere; }
+.form-status a { color: var(--mint); text-decoration: underline; }
+.form-status.ok { border-color: rgba(95,227,192,.4); background: rgba(95,227,192,.07); }
+.form-status.ok > i { color: var(--mint); }
+.form-status.err { border-color: rgba(255,140,120,.4); background: rgba(255,140,120,.06); }
+.form-status.err > i { color: #ff8c78; }
 
 .location {
     margin-top: 28px;
