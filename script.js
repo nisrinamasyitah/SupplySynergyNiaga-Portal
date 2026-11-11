@@ -132,6 +132,13 @@
                  'or WhatsApp us at <a href="https://wa.me/601114945722" target="_blank" rel="noopener">+60 11-1494 5722</a>.</span></div>');
         }
 
+        // returning from a normal (fallback) submission
+        if (/[?&]sent=1/.test(location.search)) {
+            show('ok', '<i class="fas fa-check-circle"></i><div><strong>Thank you. Your enquiry has been sent.</strong>' +
+                 '<span>A confirmation has been sent to your email. Our team will get back to you as soon as possible.</span></div>');
+            history.replaceState(null, '', location.pathname);
+        }
+
         form.addEventListener('submit', function (e) {
             e.preventDefault();
             if (form._honey && form._honey.value) return;          // bot filled the hidden field
@@ -173,7 +180,19 @@
                 }
             })
             .catch(function () {
-                failed(mailto, 'The connection to the form service failed. Please check your internet connection.');
+                // The background request was blocked (ad-blocker, private DNS, in-app browser...).
+                // Retry as a normal form submission, which blockers usually allow; FormSubmit then
+                // returns the visitor to this page with ?sent=1.
+                if (navigator.onLine === false) {
+                    failed(mailto, 'You appear to be offline. Please check your internet connection.');
+                    return;
+                }
+                form._subject.value = data._subject;
+                var next = form.querySelector('input[name="_next"]') || document.createElement('input');
+                next.type = 'hidden'; next.name = '_next';
+                next.value = location.origin + location.pathname + '?sent=1#enquiryForm';
+                form.appendChild(next);
+                HTMLFormElement.prototype.submit.call(form);   // normal POST, skips this handler
             })
             .then(function () {
                 button.disabled = false;
