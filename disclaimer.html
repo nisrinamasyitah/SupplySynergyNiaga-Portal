@@ -12,6 +12,13 @@
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/png" href="image/sc-icon.png">
     <link rel="apple-touch-icon" href="image/sc-icon.png">
+    <script>
+        /* A refresh always returns to the top of the Home page. Normal links and Back/Forward are unaffected. */
+        (function () {
+            var nav = performance.getEntriesByType && performance.getEntriesByType('navigation')[0];
+            if (nav && nav.type === 'reload') location.replace('index.html');
+        })();
+    </script>
 </head>
 <body>
 
