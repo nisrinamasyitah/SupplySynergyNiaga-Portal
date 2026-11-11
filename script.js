@@ -141,10 +141,12 @@
 
         form.addEventListener('submit', function (e) {
             e.preventDefault();
-            if (form._honey && form._honey.value) return;          // bot filled the hidden field
+            // spam trap: a hidden checkbox that people never see and browser autofill never ticks
+            if (form.hp_check && form.hp_check.checked) return;
 
             var data = {};
             new FormData(form).forEach(function (v, k) { data[k] = v; });
+            delete data.hp_check;
             data._subject = 'Quotation request: ' + data.service + ' – ' + data.company;
 
             var body = 'Name: ' + data.name + '\nCompany: ' + data.company + '\nEmail: ' + data.email +
