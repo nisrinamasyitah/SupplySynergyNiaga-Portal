@@ -107,7 +107,8 @@
     // fade sections in as they scroll into view
     var targets = document.querySelectorAll('.sec-head, .sec-title, .profile-card, .about-body, .cred, .role, .str, .company, .contact-box, ' +
         '.biz-facts, .service, .values, .project, .process, .md-card, .md-letter, .marquee, .location, .vm-card, .join-card, ' +
-        '.segment, .facts-grid, .leader, .info-table, .svc-visual, .industries > div, .logo-grid, .apply > div');
+        '.segment, .facts-grid, .leader, .info-table, .svc-visual, .industries > div, .logo-grid, .apply > div, ' +
+        '.pillar, .value, .biz-about > div, .legal-body, .contact-box');
     if ('IntersectionObserver' in window && !reduceMotion) {
         var io = new IntersectionObserver(function (entries) {
             entries.forEach(function (e) {
@@ -126,7 +127,8 @@
         targets.forEach(function (el, n) {
             el.classList.add('reveal');
             // small stagger for cards sitting side by side
-            if (el.classList.contains('cred') || el.classList.contains('service') || el.classList.contains('project')) {
+            if (el.classList.contains('project') || el.classList.contains('segment') || el.classList.contains('join-card') ||
+                el.classList.contains('value') || el.classList.contains('pillar')) {
                 el.style.transitionDelay = (Array.prototype.indexOf.call(el.parentNode.children, el) * 0.12) + 's';
             }
             if (el.classList.contains('str')) {
