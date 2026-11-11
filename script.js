@@ -88,6 +88,26 @@
 
     var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+    // partner rows: repeat the cards until they fill the screen, then double them
+    // so the row can scroll forever without a visible jump.
+    function startPartnerRow(track) {
+        var base = Array.prototype.slice.call(track.children);
+        function cloneAll(list) {
+            list.forEach(function (li) {
+                var c = li.cloneNode(true);
+                c.setAttribute('aria-hidden', 'true');
+                track.appendChild(c);
+            });
+        }
+        track.classList.add('run');
+        var need = Math.max(window.innerWidth, 1400);
+        var guard = 0;
+        while (track.scrollWidth < need && guard++ < 20) cloneAll(base);
+        cloneAll(Array.prototype.slice.call(track.children));
+        track.style.animationDuration = Math.round(track.scrollWidth / 2 / 40) + 's';   // ~40px per second
+    }
+    if (!reduceMotion) document.querySelectorAll('.pm-track').forEach(startPartnerRow);
+
     // typing line under the name
     var typedEl = document.getElementById('typed');
     var roles = ['Managing Director', 'Business Leader', 'Entrepreneur', 'Strategic Partner'];
