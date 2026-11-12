@@ -77,6 +77,9 @@
 
     // mobile menu
     function setMenu(open) {
+        // the phone menu starts right under the header, wherever it currently is
+        // (lower at the top of the page, where the top bar is still showing)
+        if (open) nav.style.top = Math.max(0, Math.round(header.getBoundingClientRect().bottom)) + 'px';
         nav.classList.toggle('open', open);
         menu.setAttribute('aria-expanded', open);
         menu.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
