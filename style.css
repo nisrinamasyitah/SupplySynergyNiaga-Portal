@@ -258,20 +258,18 @@ h1, h2, h3, h4 { font-family: var(--head); color: var(--text); line-height: 1.25
 .sec-intro .lead { font-size: 17.5px; }
 .sec-intro .text-link { margin-top: 18px; }
 
-/* ── home: values row ── */
-.values-row { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
-.values-row div { padding: 6px 32px 6px 0; }
-.values-row div + div { padding-left: 32px; border-left: 1px solid var(--line); }
-.values-title { margin-bottom: 26px; font: 600 12.5px var(--head); letter-spacing: .2em; text-transform: uppercase; color: var(--text-2); }
-.values-row i {
-    width: 52px; height: 52px; display: grid; place-items: center;
-    border: 1px solid rgba(95,227,192,.28); border-radius: 4px;
-    background: rgba(95,227,192,.06); color: var(--mint); font-size: 19px;
-    transition: background .3s, color .3s, border-color .3s;
+/* ── home: who we are ── */
+.who { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 96px; align-items: start; }
+.who-main .sec-title { margin-bottom: 26px; }
+.who-why { padding-top: 10px; }
+.who-why-title {
+    padding-bottom: 18px; border-bottom: 1px solid var(--line-2);
+    font: 600 12.5px var(--head); letter-spacing: .2em; text-transform: uppercase; color: var(--text-2);
 }
-.values-row div:hover i { background: var(--mint); border-color: var(--mint); color: #05201a; }
-.values-row strong { display: block; margin-top: 20px; font: 700 20px var(--head); color: var(--text); }
-.values-row p { margin-top: 6px; font-size: 15px; }
+.strengths li { position: relative; padding: 22px 0 22px 30px; border-bottom: 1px solid var(--line); }
+.strengths li::before { content: ''; position: absolute; left: 0; top: 33px; width: 14px; height: 2px; background: var(--bar); }
+.strengths strong { display: block; font: 700 17px var(--head); color: var(--text); }
+.strengths p { margin-top: 4px; font-size: 15px; }
 
 /* ── home: business divisions ── */
 .divisions { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border: 1px solid var(--line-2); background: var(--card); }
@@ -725,9 +723,8 @@ h1, h2, h3, h4 { font-family: var(--head); color: var(--text); line-height: 1.25
     .glance-grid div { padding: 20px 20px 20px 0; border-left: 0; }
     .glance-grid div:nth-child(even) { padding-left: 20px; border-left: 1px solid var(--line); }
     .glance-grid div:nth-child(n+3) { border-top: 1px solid var(--line); }
+    .who { grid-template-columns: 1fr; gap: 44px; }
     .sec-intro { grid-template-columns: 1fr; gap: 20px; align-items: start; padding-bottom: 32px; margin-bottom: 36px; }
-    .values-row { grid-template-columns: 1fr 1fr; gap: 28px 0; }
-    .values-row div:nth-child(3) { padding-left: 0; border-left: 0; }
     .divisions { grid-template-columns: 1fr; }
     .division + .division { border-left: 0; border-top: 1px solid var(--line-2); }
     .leader-feature { grid-template-columns: 1fr; gap: 36px; }
@@ -776,8 +773,6 @@ h1, h2, h3, h4 { font-family: var(--head); color: var(--text); line-height: 1.25
     .topbar a, .topbar span { gap: 6px; }
     .tb-right a + a, .tb-left > span + span { padding-left: 10px; margin-left: 10px; }
     .hero .hero-inner { padding-top: 56px; padding-bottom: 56px; }
-    .values-row { grid-template-columns: 1fr; }
-    .values-row div, .values-row div + div { padding: 0 0 22px; border-left: 0; border-bottom: 1px solid var(--line); }
     .division { padding: 32px 22px 28px; }
     .docs a { padding: 20px 4px; }
     .doc-act { font-size: 0; gap: 0; }
