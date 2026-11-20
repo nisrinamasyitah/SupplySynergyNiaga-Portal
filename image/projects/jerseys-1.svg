@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900">
+<defs>
+  <radialGradient id="bg" cx="50%" cy="36%" r="75%"><stop offset="0" stop-color="#1c2833"/><stop offset=".55" stop-color="#0d1218"/><stop offset="1" stop-color="#06080b"/></radialGradient>
+  <radialGradient id="glow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#5fe3c0" stop-opacity=".10"/><stop offset="1" stop-color="#5fe3c0" stop-opacity="0"/></radialGradient>
+  <linearGradient id="floorFade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff" stop-opacity=".035"/><stop offset="1" stop-color="#ffffff" stop-opacity="0"/></linearGradient>
+  <filter id="soft" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="22"/></filter>
+  <filter id="drop" x="-20%" y="-20%" width="140%" height="160%"><feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#000" flood-opacity=".55"/></filter>
+  <linearGradient id="jBody" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#d8333f"/><stop offset="1" stop-color="#9e1a26"/></linearGradient>
+<linearGradient id="jSleeve" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#26346e"/><stop offset="1" stop-color="#141c43"/></linearGradient>
+</defs>
+<rect width="1600" height="900" fill="url(#bg)"/>
+<ellipse cx="800" cy="380" rx="620" ry="380" fill="url(#glow)"/>
+<rect x="0" y="700" width="1600" height="200" fill="url(#floorFade)"/>
+<line x1="0" y1="700" x2="1600" y2="700" stroke="#ffffff" stroke-opacity=".05"/>
+<g stroke="#3d8be0" stroke-opacity=".35" stroke-width="2"><line x1="1240" y1="900" x2="1600" y2="560"/></g>
+<g stroke="#5fe3c0" stroke-opacity=".35" stroke-width="2"><line x1="1290" y1="900" x2="1600" y2="610"/></g>
+<ellipse cx="800" cy="790" rx="380" ry="30" fill="#000" opacity="0.6" filter="url(#soft)"/><g transform="translate(0 0) scale(1)" filter="url(#drop)">
+  <path d="M590 215 L480 330 L540 420 L615 372 L615 760 Q800 780 985 760 L985 372 L1060 420 L1120 330 L1010 215 L900 180 Q800 250 700 180 Z" fill="url(#jBody)"/>
+  <path d="M590 215 L480 330 L540 420 L615 372 L640 300 Z" fill="url(#jSleeve)"/>
+  <path d="M1010 215 L1120 330 L1060 420 L985 372 L960 300 Z" fill="url(#jSleeve)"/>
+  <path d="M480 330 L540 420" stroke="#f2c230" stroke-width="10" stroke-linecap="round"/>
+  <path d="M1120 330 L1060 420" stroke="#f2c230" stroke-width="10" stroke-linecap="round"/>
+  <path d="M700 180 Q800 250 900 180" fill="none" stroke="#f2c230" stroke-width="12" stroke-linecap="round"/>
+  <path d="M615 372 L615 760 L660 762 L660 360 Z" fill="#000" opacity=".14"/>
+  <path d="M985 372 L985 760 L940 762 L940 360 Z" fill="#000" opacity=".14"/>
+  <path d="M720 470 L880 470" stroke="#ffffff" stroke-opacity=".9" stroke-width="0"/>
+  <text x="800" y="560" text-anchor="middle" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="170" fill="#ffffff" fill-opacity=".95">10</text>
+  <path d="M630 690 Q800 705 970 690" stroke="#f2c230" stroke-width="8" fill="none" opacity=".8"/>
+</g>
+</svg>

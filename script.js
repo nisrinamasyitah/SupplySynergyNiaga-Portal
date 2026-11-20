@@ -115,39 +115,48 @@
     if (!reduceMotion) document.querySelectorAll('.pm-track').forEach(startPartnerRow);
 
     // ───────── project window: click a project card to see its pictures and details ─────────
-    // To add photos: put them in image/projects/ and add them to that project's "images" list.
-    // The first image is shown first. Logos get a white background automatically (logo: true).
+    // To use real photos: put them in image/projects/ and replace the entries in that project's "images" list.
+    // Pictures marked illustration: true show an "Illustration" label so visitors don't mistake them for photos.
+    var ORDER = ['mpsepang', 'mekjajewels', 'nelmora', 'sprm'];
     var PROJECTS = {
         mpsepang: {
-            partner: 'Majlis Perbandaran Sepang', sector: 'Government · Municipal Council',
-            title: 'Football Team Jerseys', scope: 'Apparel Supply',
+            partner: 'Majlis Perbandaran Sepang', logo: 'image/mpsepang.png', sector: 'Government · Municipal Council',
+            title: 'Football Team Jerseys', scope: 'Apparel Supply', role: 'Supplier',
             text: ['Supplied football jerseys for the Majlis Perbandaran Sepang (MPSepang) football team.'],
             images: [
-                { src: 'image/mpsepang.png', alt: 'Majlis Perbandaran Sepang logo', logo: true }
+                { src: 'image/projects/jerseys-1.svg', alt: 'Football jersey', illustration: true },
+                { src: 'image/projects/jerseys-2.svg', alt: 'Stack of folded jerseys', illustration: true },
+                { src: 'image/projects/jerseys-3.svg', alt: 'Jerseys packed for delivery', illustration: true }
             ]
         },
         mekjajewels: {
-            partner: 'MekjaJewels', sector: 'Private · Jewellery Brand',
-            title: 'Information Cards', scope: 'Printing',
+            partner: 'MekjaJewels', logo: 'image/mekjajewels-web.png', sector: 'Private · Jewellery Brand',
+            title: 'Information Cards', scope: 'Printing', role: 'Production & Supply',
             text: ['Produced information cards for MekjaJewels.'],
             images: [
-                { src: 'image/mekjajewels-web.png', alt: 'MekjaJewels logo', logo: true }
+                { src: 'image/projects/cards-1.svg', alt: 'Printed information card', illustration: true },
+                { src: 'image/projects/cards-2.svg', alt: 'Set of information cards', illustration: true },
+                { src: 'image/projects/cards-3.svg', alt: 'Information cards with envelope', illustration: true }
             ]
         },
         nelmora: {
-            partner: 'Nelmora Parfums', sector: 'Private · Fragrance Brand',
-            title: 'Product Stickers', scope: 'Printing',
+            partner: 'Nelmora Parfums', logo: 'image/nelmora.png', sector: 'Private · Fragrance Brand',
+            title: 'Product Stickers', scope: 'Printing', role: 'Production & Supply',
             text: ['Produced product stickers for Nelmora Parfums.'],
             images: [
-                { src: 'image/nelmora.png', alt: 'Nelmora Parfums logo', logo: true }
+                { src: 'image/projects/stickers-1.svg', alt: 'Labelled fragrance bottle', illustration: true },
+                { src: 'image/projects/stickers-2.svg', alt: 'Sheet of product stickers', illustration: true },
+                { src: 'image/projects/stickers-3.svg', alt: 'Roll of product stickers', illustration: true }
             ]
         },
         sprm: {
-            partner: 'Malaysian Anti-Corruption Commission (SPRM)', sector: 'Government · Federal Agency',
-            title: 'Corporate Mugs', scope: 'Merchandise',
+            partner: 'Malaysian Anti-Corruption Commission (SPRM)', logo: 'image/sprm.png', sector: 'Government · Federal Agency',
+            title: 'Corporate Mugs', scope: 'Merchandise', role: 'Subcontractor',
             text: ['Supplied and delivered corporate mugs to SPRM as a subcontractor.'],
             images: [
-                { src: 'image/sprm.png', alt: 'Malaysian Anti-Corruption Commission (SPRM) logo', logo: true }
+                { src: 'image/projects/mugs-1.svg', alt: 'Corporate mug', illustration: true },
+                { src: 'image/projects/mugs-2.svg', alt: 'Set of corporate mugs', illustration: true },
+                { src: 'image/projects/mugs-3.svg', alt: 'Mugs boxed for delivery', illustration: true }
             ]
         }
     };
@@ -160,40 +169,56 @@
         modal.innerHTML =
             '<div class="pmodal-backdrop" data-close></div>' +
             '<div class="pmodal-panel" role="dialog" aria-modal="true" aria-labelledby="pmTitle">' +
-                '<button class="pmodal-close" type="button" aria-label="Close" data-close><i class="fas fa-times"></i></button>' +
-                '<div class="pm-gallery">' +
-                    '<div class="pm-stage">' +
-                        '<img class="pm-main" alt="">' +
-                        '<button class="pm-nav pm-prev" type="button" aria-label="Previous picture"><i class="fas fa-chevron-left"></i></button>' +
-                        '<button class="pm-nav pm-next" type="button" aria-label="Next picture"><i class="fas fa-chevron-right"></i></button>' +
-                        '<span class="pm-count"></span>' +
-                    '</div>' +
-                    '<div class="pm-thumbs"></div>' +
+                '<div class="pm-top">' +
+                    '<p class="pm-kicker">Project Case Study <span class="pm-pos"></span></p>' +
+                    '<button class="pmodal-close" type="button" aria-label="Close" data-close><i class="fas fa-times"></i></button>' +
                 '</div>' +
-                '<div class="pm-info">' +
-                    '<p class="pm-sector"></p>' +
-                    '<h3 class="pm-partner" id="pmTitle"></h3>' +
-                    '<p class="pm-title"></p>' +
-                    '<div class="pm-desc"></div>' +
-                    '<dl class="pm-meta"></dl>' +
-                    '<a href="contact.html" class="btn btn-primary pm-cta">Request a Similar Quotation</a>' +
+                '<div class="pm-stage">' +
+                    '<img class="pm-main" alt="">' +
+                    '<span class="pm-badge">Illustration</span>' +
+                    '<button class="pm-nav pm-prev" type="button" aria-label="Previous picture"><i class="fas fa-chevron-left"></i></button>' +
+                    '<button class="pm-nav pm-next" type="button" aria-label="Next picture"><i class="fas fa-chevron-right"></i></button>' +
+                    '<span class="pm-count"></span>' +
+                '</div>' +
+                '<div class="pm-thumbs"></div>' +
+                '<div class="pm-body">' +
+                    '<div class="pm-overview">' +
+                        '<p class="pm-sector"></p>' +
+                        '<h3 class="pm-title" id="pmTitle"></h3>' +
+                        '<div class="pm-partner"><span class="pm-logo"><img alt=""></span><span><small>Partner</small><strong></strong></span></div>' +
+                        '<h4 class="pm-h">Overview</h4>' +
+                        '<div class="pm-desc"></div>' +
+                    '</div>' +
+                    '<aside class="pm-facts">' +
+                        '<h4 class="pm-h">Project Details</h4>' +
+                        '<dl class="pm-meta"></dl>' +
+                        '<a href="contact.html" class="btn btn-primary pm-cta">Request a Similar Quotation</a>' +
+                    '</aside>' +
+                '</div>' +
+                '<div class="pm-pager">' +
+                    '<button type="button" class="pm-page pm-page-prev"><i class="fas fa-arrow-left"></i><span><small>Previous project</small><strong></strong></span></button>' +
+                    '<button type="button" class="pm-page pm-page-next"><span><small>Next project</small><strong></strong></span><i class="fas fa-arrow-right"></i></button>' +
                 '</div>' +
             '</div>';
         document.body.appendChild(modal);
 
+        var panel = modal.querySelector('.pmodal-panel');
         var mainImg = modal.querySelector('.pm-main');
         var stage = modal.querySelector('.pm-stage');
+        var badge = modal.querySelector('.pm-badge');
         var thumbs = modal.querySelector('.pm-thumbs');
         var count = modal.querySelector('.pm-count');
-        var current = null, index = 0, opener = null;
+        var currentId = null, current = null, index = 0, opener = null;
+
+        function escP(t) { return String(t).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
 
         function showImage(i) {
             var imgs = current.images;
             index = (i + imgs.length) % imgs.length;
             var im = imgs[index];
             mainImg.src = im.src;
-            mainImg.alt = im.alt || current.partner;
-            stage.classList.toggle('is-logo', !!im.logo);
+            mainImg.alt = im.alt || current.title;
+            badge.hidden = !im.illustration;
             count.textContent = (index + 1) + ' / ' + imgs.length;
             Array.prototype.forEach.call(thumbs.children, function (t, n) {
                 t.classList.toggle('active', n === index);
@@ -201,26 +226,36 @@
             });
         }
 
-        function openProject(id, from) {
+        function fill(id) {
+            currentId = id;
             current = PROJECTS[id];
-            if (!current) return;
-            opener = from || null;
+            var pos = ORDER.indexOf(id);
+            modal.querySelector('.pm-pos').textContent = (pos + 1) + ' of ' + ORDER.length;
             modal.querySelector('.pm-sector').textContent = current.sector;
-            modal.querySelector('.pm-partner').textContent = current.partner;
             modal.querySelector('.pm-title').textContent = current.title;
-            modal.querySelector('.pm-desc').innerHTML = current.text.map(function (p) { return '<p>' + esc(p) + '</p>'; }).join('');
-            modal.querySelector('.pm-meta').innerHTML =
-                '<div><dt>Scope</dt><dd>' + esc(current.scope) + '</dd></div>' +
-                '<div><dt>Partner</dt><dd>' + esc(current.partner) + '</dd></div>' +
-                '<div><dt>Sector</dt><dd>' + esc(current.sector) + '</dd></div>';
+            modal.querySelector('.pm-logo img').src = current.logo;
+            modal.querySelector('.pm-partner strong').textContent = current.partner;
+            modal.querySelector('.pm-desc').innerHTML = current.text.map(function (p) { return '<p>' + escP(p) + '</p>'; }).join('');
+            modal.querySelector('.pm-meta').innerHTML = [
+                ['Partner', current.partner], ['Sector', current.sector], ['Scope', current.scope], ['Our Role', current.role]
+            ].map(function (r) { return '<div><dt>' + r[0] + '</dt><dd>' + escP(r[1]) + '</dd></div>'; }).join('');
             thumbs.innerHTML = current.images.map(function (im, n) {
-                return '<button type="button" class="pm-thumb' + (im.logo ? ' is-logo' : '') + '" aria-label="Picture ' + (n + 1) + '">' +
-                       '<img src="' + im.src + '" alt=""></button>';
+                return '<button type="button" class="pm-thumb" aria-label="Picture ' + (n + 1) + '"><img src="' + im.src + '" alt=""></button>';
             }).join('');
             Array.prototype.forEach.call(thumbs.children, function (t, n) { t.addEventListener('click', function () { showImage(n); }); });
-            var many = current.images.length > 1;
-            modal.classList.toggle('single', !many);
+            modal.classList.toggle('single', current.images.length < 2);
+            var prev = PROJECTS[ORDER[(pos - 1 + ORDER.length) % ORDER.length]];
+            var next = PROJECTS[ORDER[(pos + 1) % ORDER.length]];
+            modal.querySelector('.pm-page-prev strong').textContent = prev.title;
+            modal.querySelector('.pm-page-next strong').textContent = next.title;
             showImage(0);
+            panel.scrollTop = 0;
+        }
+
+        function openProject(id, from) {
+            if (!PROJECTS[id]) return;
+            opener = from || null;
+            fill(id);
             modal.hidden = false;
             document.body.style.overflow = 'hidden';
             requestAnimationFrame(function () { modal.classList.add('open'); });
@@ -234,7 +269,7 @@
             if (opener) opener.focus();
         }
 
-        function esc(t) { return String(t).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+        function step(d) { fill(ORDER[(ORDER.indexOf(currentId) + d + ORDER.length) % ORDER.length]); }
 
         Array.prototype.forEach.call(cards, function (card) {
             card.addEventListener('click', function () { openProject(card.getAttribute('data-project'), card); });
@@ -245,6 +280,8 @@
         modal.addEventListener('click', function (e) { if (e.target.closest('[data-close]')) closeProject(); });
         modal.querySelector('.pm-prev').addEventListener('click', function () { showImage(index - 1); });
         modal.querySelector('.pm-next').addEventListener('click', function () { showImage(index + 1); });
+        modal.querySelector('.pm-page-prev').addEventListener('click', function () { step(-1); });
+        modal.querySelector('.pm-page-next').addEventListener('click', function () { step(1); });
         document.addEventListener('keydown', function (e) {
             if (modal.hidden) return;
             if (e.key === 'Escape') closeProject();

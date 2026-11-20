@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900">
+<defs>
+  <radialGradient id="bg" cx="50%" cy="36%" r="75%"><stop offset="0" stop-color="#1c2833"/><stop offset=".55" stop-color="#0d1218"/><stop offset="1" stop-color="#06080b"/></radialGradient>
+  <radialGradient id="glow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#5fe3c0" stop-opacity=".10"/><stop offset="1" stop-color="#5fe3c0" stop-opacity="0"/></radialGradient>
+  <linearGradient id="floorFade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff" stop-opacity=".035"/><stop offset="1" stop-color="#ffffff" stop-opacity="0"/></linearGradient>
+  <filter id="soft" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="22"/></filter>
+  <filter id="drop" x="-20%" y="-20%" width="140%" height="160%"><feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#000" flood-opacity=".55"/></filter>
+  <linearGradient id="cardFace" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fbf8f1"/><stop offset="1" stop-color="#ebe3d3"/></linearGradient>
+<linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e8cf8a"/><stop offset=".5" stop-color="#c39a45"/><stop offset="1" stop-color="#9c7629"/></linearGradient>
+</defs>
+<rect width="1600" height="900" fill="url(#bg)"/>
+<ellipse cx="800" cy="380" rx="620" ry="380" fill="url(#glow)"/>
+<rect x="0" y="700" width="1600" height="200" fill="url(#floorFade)"/>
+<line x1="0" y1="700" x2="1600" y2="700" stroke="#ffffff" stroke-opacity=".05"/>
+<g stroke="#3d8be0" stroke-opacity=".35" stroke-width="2"><line x1="1240" y1="900" x2="1600" y2="560"/></g>
+<g stroke="#5fe3c0" stroke-opacity=".35" stroke-width="2"><line x1="1290" y1="900" x2="1600" y2="610"/></g>
+<ellipse cx="800" cy="720" rx="420" ry="30" fill="#000" opacity="0.6" filter="url(#soft)"/><g transform="rotate(-16 800 470)" filter="url(#drop)">
+  <rect x="490.0" y="285.0" width="620" height="370" rx="18" fill="url(#cardFace)"/>
+  <rect x="512.0" y="307.0" width="576" height="326" rx="10" fill="none" stroke="url(#gold)" stroke-width="3"/>
+  <circle cx="600.0" cy="470.0" r="50" fill="none" stroke="url(#gold)" stroke-width="8"/>
+  <circle cx="600.0" cy="470.0" r="34" fill="none" stroke="url(#gold)" stroke-width="2"/>
+  <path d="M582.0 458.0 l18 -16 l18 16 l-18 30 z" fill="url(#gold)"/>
+  <rect x="690.0" y="412.0" width="260.4" height="22" rx="11" fill="url(#gold)"/>
+  <rect x="690.0" y="456.0" width="322.40000000000003" height="12" rx="6" fill="#bdb3a1"/>
+  <rect x="690.0" y="482.0" width="285.2" height="12" rx="6" fill="#cfc6b5"/>
+  <rect x="690.0" y="508.0" width="210.8" height="12" rx="6" fill="#cfc6b5"/>
+</g><g transform="rotate(-6 800 450)" filter="url(#drop)">
+  <rect x="490.0" y="265.0" width="620" height="370" rx="18" fill="url(#cardFace)"/>
+  <rect x="512.0" y="287.0" width="576" height="326" rx="10" fill="none" stroke="url(#gold)" stroke-width="3"/>
+  <circle cx="600.0" cy="450.0" r="50" fill="none" stroke="url(#gold)" stroke-width="8"/>
+  <circle cx="600.0" cy="450.0" r="34" fill="none" stroke="url(#gold)" stroke-width="2"/>
+  <path d="M582.0 438.0 l18 -16 l18 16 l-18 30 z" fill="url(#gold)"/>
+  <rect x="690.0" y="392.0" width="260.4" height="22" rx="11" fill="url(#gold)"/>
+  <rect x="690.0" y="436.0" width="322.40000000000003" height="12" rx="6" fill="#bdb3a1"/>
+  <rect x="690.0" y="462.0" width="285.2" height="12" rx="6" fill="#cfc6b5"/>
+  <rect x="690.0" y="488.0" width="210.8" height="12" rx="6" fill="#cfc6b5"/>
+</g><g transform="rotate(5 800 440)" filter="url(#drop)">
+  <rect x="490.0" y="255.0" width="620" height="370" rx="18" fill="url(#cardFace)"/>
+  <rect x="512.0" y="277.0" width="576" height="326" rx="10" fill="none" stroke="url(#gold)" stroke-width="3"/>
+  <circle cx="600.0" cy="440.0" r="50" fill="none" stroke="url(#gold)" stroke-width="8"/>
+  <circle cx="600.0" cy="440.0" r="34" fill="none" stroke="url(#gold)" stroke-width="2"/>
+  <path d="M582.0 428.0 l18 -16 l18 16 l-18 30 z" fill="url(#gold)"/>
+  <rect x="690.0" y="382.0" width="260.4" height="22" rx="11" fill="url(#gold)"/>
+  <rect x="690.0" y="426.0" width="322.40000000000003" height="12" rx="6" fill="#bdb3a1"/>
+  <rect x="690.0" y="452.0" width="285.2" height="12" rx="6" fill="#cfc6b5"/>
+  <rect x="690.0" y="478.0" width="210.8" height="12" rx="6" fill="#cfc6b5"/>
+</g><g transform="rotate(14 800 430)" filter="url(#drop)">
+  <rect x="490.0" y="245.0" width="620" height="370" rx="18" fill="url(#cardFace)"/>
+  <rect x="512.0" y="267.0" width="576" height="326" rx="10" fill="none" stroke="url(#gold)" stroke-width="3"/>
+  <circle cx="600.0" cy="430.0" r="50" fill="none" stroke="url(#gold)" stroke-width="8"/>
+  <circle cx="600.0" cy="430.0" r="34" fill="none" stroke="url(#gold)" stroke-width="2"/>
+  <path d="M582.0 418.0 l18 -16 l18 16 l-18 30 z" fill="url(#gold)"/>
+  <rect x="690.0" y="372.0" width="260.4" height="22" rx="11" fill="url(#gold)"/>
+  <rect x="690.0" y="416.0" width="322.40000000000003" height="12" rx="6" fill="#bdb3a1"/>
+  <rect x="690.0" y="442.0" width="285.2" height="12" rx="6" fill="#cfc6b5"/>
+  <rect x="690.0" y="468.0" width="210.8" height="12" rx="6" fill="#cfc6b5"/>
+</g>
+</svg>

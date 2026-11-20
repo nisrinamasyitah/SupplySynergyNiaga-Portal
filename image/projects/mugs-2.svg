@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900">
+<defs>
+  <radialGradient id="bg" cx="50%" cy="36%" r="75%"><stop offset="0" stop-color="#1c2833"/><stop offset=".55" stop-color="#0d1218"/><stop offset="1" stop-color="#06080b"/></radialGradient>
+  <radialGradient id="glow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#5fe3c0" stop-opacity=".10"/><stop offset="1" stop-color="#5fe3c0" stop-opacity="0"/></radialGradient>
+  <linearGradient id="floorFade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff" stop-opacity=".035"/><stop offset="1" stop-color="#ffffff" stop-opacity="0"/></linearGradient>
+  <filter id="soft" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="22"/></filter>
+  <filter id="drop" x="-20%" y="-20%" width="140%" height="160%"><feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#000" flood-opacity=".55"/></filter>
+  <linearGradient id="mug" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#c9d1d9"/><stop offset=".35" stop-color="#ffffff"/><stop offset="1" stop-color="#aeb8c2"/></linearGradient>
+<linearGradient id="boxW" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f3f5f7"/><stop offset="1" stop-color="#d4dae0"/></linearGradient>
+</defs>
+<rect width="1600" height="900" fill="url(#bg)"/>
+<ellipse cx="800" cy="380" rx="620" ry="380" fill="url(#glow)"/>
+<rect x="0" y="700" width="1600" height="200" fill="url(#floorFade)"/>
+<line x1="0" y1="700" x2="1600" y2="700" stroke="#ffffff" stroke-opacity=".05"/>
+<g stroke="#3d8be0" stroke-opacity=".35" stroke-width="2"><line x1="1240" y1="900" x2="1600" y2="560"/></g>
+<g stroke="#5fe3c0" stroke-opacity=".35" stroke-width="2"><line x1="1290" y1="900" x2="1600" y2="610"/></g>
+<ellipse cx="800" cy="720" rx="520" ry="28" fill="#000" opacity="0.6" filter="url(#soft)"/><g filter="url(#drop)">
+  <path d="M612.32 517.2 q93.60000000000001 -7.800000000000001 85.8 70.2 q-7.800000000000001 74.10000000000001 -85.8 78.0" fill="none" stroke="#c4ccd4" stroke-width="26.52" stroke-linecap="round"/>
+  <path d="M383.0 454.8 h234.0 v234.0 q0 31.200000000000003 -31.200000000000003 31.200000000000003 h-171.6 q-31.200000000000003 0 -31.200000000000003 -31.200000000000003 z" fill="url(#mug)"/>
+  <ellipse cx="500" cy="454.8" rx="117.0" ry="20.28" fill="#e6ebf0"/>
+  <ellipse cx="500" cy="457.92" rx="106.08" ry="14.040000000000001" fill="#3a2a22"/>
+  <circle cx="492.2" cy="582.096" r="45.24" fill="none" stroke="#c39a45" stroke-width="7.0200000000000005"/>
+  <circle cx="492.2" cy="582.096" r="28.080000000000002" fill="none" stroke="#1d2a5b" stroke-width="4.68"/>
+</g><g filter="url(#drop)">
+  <path d="M1212.32 517.2 q93.60000000000001 -7.800000000000001 85.8 70.2 q-7.800000000000001 74.10000000000001 -85.8 78.0" fill="none" stroke="#c4ccd4" stroke-width="26.52" stroke-linecap="round"/>
+  <path d="M983.0 454.8 h234.0 v234.0 q0 31.200000000000003 -31.200000000000003 31.200000000000003 h-171.6 q-31.200000000000003 0 -31.200000000000003 -31.200000000000003 z" fill="url(#mug)"/>
+  <ellipse cx="1100" cy="454.8" rx="117.0" ry="20.28" fill="#e6ebf0"/>
+  <ellipse cx="1100" cy="457.92" rx="106.08" ry="14.040000000000001" fill="#3a2a22"/>
+  <circle cx="1092.2" cy="582.096" r="45.24" fill="none" stroke="#c39a45" stroke-width="7.0200000000000005"/>
+  <circle cx="1092.2" cy="582.096" r="28.080000000000002" fill="none" stroke="#1d2a5b" stroke-width="4.68"/>
+</g><g filter="url(#drop)">
+  <path d="M929.6 506.0 q108.0 -9.0 99.0 81.0 q-9.0 85.5 -99.0 90.0" fill="none" stroke="#c4ccd4" stroke-width="30.6" stroke-linecap="round"/>
+  <path d="M665.0 434.0 h270.0 v270.0 q0 36.0 -36.0 36.0 h-198.0 q-36.0 0 -36.0 -36.0 z" fill="url(#mug)"/>
+  <ellipse cx="800" cy="434.0" rx="135.0" ry="23.400000000000002" fill="#e6ebf0"/>
+  <ellipse cx="800" cy="437.6" rx="122.4" ry="16.2" fill="#3a2a22"/>
+  <circle cx="791.0" cy="580.88" r="52.2" fill="none" stroke="#c39a45" stroke-width="8.1"/>
+  <circle cx="791.0" cy="580.88" r="32.4" fill="none" stroke="#1d2a5b" stroke-width="5.4"/>
+</g>
+</svg>
