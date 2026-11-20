@@ -372,7 +372,7 @@ h1, h2, h3, h4 { font-family: var(--head); color: var(--text); line-height: 1.25
 }
 .project:hover .project-logo img { transform: scale(1.04); }
 .project-body { padding: 24px 24px 28px; flex: 1; }
-.project-tag { font: 600 11.5px var(--head); letter-spacing: .14em; text-transform: uppercase; color: var(--mint); }
+.project-tag { display: block; font: 600 11.5px/1.5 var(--head); letter-spacing: .14em; text-transform: uppercase; color: var(--mint); }
 .project-body h3 { margin-top: 8px; font-size: 18px; font-weight: 700; }
 .project-body p { margin-top: 10px; font-size: 15px; }
 .project-body .project-client { margin-top: 6px; font: 600 13.5px/1.5 var(--head); color: var(--text); }
