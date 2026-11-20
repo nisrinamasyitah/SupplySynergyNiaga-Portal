@@ -114,6 +114,154 @@
     }
     if (!reduceMotion) document.querySelectorAll('.pm-track').forEach(startPartnerRow);
 
+    // ───────── project window: click a project card to see its pictures and details ─────────
+    // To add photos: put them in image/projects/ and add them to that project's "images" list.
+    // The first image is shown first. Logos get a white background automatically (logo: true).
+    var PROJECTS = {
+        mpsepang: {
+            partner: 'Majlis Perbandaran Sepang', sector: 'Government · Municipal Council',
+            title: 'Football Team Jerseys', scope: 'Apparel Supply',
+            text: ['Supplied football jerseys for the Majlis Perbandaran Sepang (MPSepang) football team.'],
+            images: [
+                { src: 'image/mpsepang.png', alt: 'Majlis Perbandaran Sepang logo', logo: true }
+            ]
+        },
+        mekjajewels: {
+            partner: 'MekjaJewels', sector: 'Private · Jewellery Brand',
+            title: 'Information Cards', scope: 'Printing',
+            text: ['Produced information cards for MekjaJewels.'],
+            images: [
+                { src: 'image/mekjajewels-web.png', alt: 'MekjaJewels logo', logo: true }
+            ]
+        },
+        nelmora: {
+            partner: 'Nelmora Parfums', sector: 'Private · Fragrance Brand',
+            title: 'Product Stickers', scope: 'Printing',
+            text: ['Produced product stickers for Nelmora Parfums.'],
+            images: [
+                { src: 'image/nelmora.png', alt: 'Nelmora Parfums logo', logo: true }
+            ]
+        },
+        sprm: {
+            partner: 'Malaysian Anti-Corruption Commission (SPRM)', sector: 'Government · Federal Agency',
+            title: 'Corporate Mugs', scope: 'Merchandise',
+            text: ['Supplied and delivered corporate mugs to SPRM as a subcontractor.'],
+            images: [
+                { src: 'image/sprm.png', alt: 'Malaysian Anti-Corruption Commission (SPRM) logo', logo: true }
+            ]
+        }
+    };
+
+    var cards = document.querySelectorAll('.project[data-project]');
+    if (cards.length) {
+        var modal = document.createElement('div');
+        modal.className = 'pmodal';
+        modal.hidden = true;
+        modal.innerHTML =
+            '<div class="pmodal-backdrop" data-close></div>' +
+            '<div class="pmodal-panel" role="dialog" aria-modal="true" aria-labelledby="pmTitle">' +
+                '<button class="pmodal-close" type="button" aria-label="Close" data-close><i class="fas fa-times"></i></button>' +
+                '<div class="pm-gallery">' +
+                    '<div class="pm-stage">' +
+                        '<img class="pm-main" alt="">' +
+                        '<button class="pm-nav pm-prev" type="button" aria-label="Previous picture"><i class="fas fa-chevron-left"></i></button>' +
+                        '<button class="pm-nav pm-next" type="button" aria-label="Next picture"><i class="fas fa-chevron-right"></i></button>' +
+                        '<span class="pm-count"></span>' +
+                    '</div>' +
+                    '<div class="pm-thumbs"></div>' +
+                '</div>' +
+                '<div class="pm-info">' +
+                    '<p class="pm-sector"></p>' +
+                    '<h3 class="pm-partner" id="pmTitle"></h3>' +
+                    '<p class="pm-title"></p>' +
+                    '<div class="pm-desc"></div>' +
+                    '<dl class="pm-meta"></dl>' +
+                    '<a href="contact.html" class="btn btn-primary pm-cta">Request a Similar Quotation</a>' +
+                '</div>' +
+            '</div>';
+        document.body.appendChild(modal);
+
+        var mainImg = modal.querySelector('.pm-main');
+        var stage = modal.querySelector('.pm-stage');
+        var thumbs = modal.querySelector('.pm-thumbs');
+        var count = modal.querySelector('.pm-count');
+        var current = null, index = 0, opener = null;
+
+        function showImage(i) {
+            var imgs = current.images;
+            index = (i + imgs.length) % imgs.length;
+            var im = imgs[index];
+            mainImg.src = im.src;
+            mainImg.alt = im.alt || current.partner;
+            stage.classList.toggle('is-logo', !!im.logo);
+            count.textContent = (index + 1) + ' / ' + imgs.length;
+            Array.prototype.forEach.call(thumbs.children, function (t, n) {
+                t.classList.toggle('active', n === index);
+                t.setAttribute('aria-current', n === index ? 'true' : 'false');
+            });
+        }
+
+        function openProject(id, from) {
+            current = PROJECTS[id];
+            if (!current) return;
+            opener = from || null;
+            modal.querySelector('.pm-sector').textContent = current.sector;
+            modal.querySelector('.pm-partner').textContent = current.partner;
+            modal.querySelector('.pm-title').textContent = current.title;
+            modal.querySelector('.pm-desc').innerHTML = current.text.map(function (p) { return '<p>' + esc(p) + '</p>'; }).join('');
+            modal.querySelector('.pm-meta').innerHTML =
+                '<div><dt>Scope</dt><dd>' + esc(current.scope) + '</dd></div>' +
+                '<div><dt>Partner</dt><dd>' + esc(current.partner) + '</dd></div>' +
+                '<div><dt>Sector</dt><dd>' + esc(current.sector) + '</dd></div>';
+            thumbs.innerHTML = current.images.map(function (im, n) {
+                return '<button type="button" class="pm-thumb' + (im.logo ? ' is-logo' : '') + '" aria-label="Picture ' + (n + 1) + '">' +
+                       '<img src="' + im.src + '" alt=""></button>';
+            }).join('');
+            Array.prototype.forEach.call(thumbs.children, function (t, n) { t.addEventListener('click', function () { showImage(n); }); });
+            var many = current.images.length > 1;
+            modal.classList.toggle('single', !many);
+            showImage(0);
+            modal.hidden = false;
+            document.body.style.overflow = 'hidden';
+            requestAnimationFrame(function () { modal.classList.add('open'); });
+            modal.querySelector('.pmodal-close').focus();
+        }
+
+        function closeProject() {
+            modal.classList.remove('open');
+            document.body.style.overflow = '';
+            setTimeout(function () { modal.hidden = true; }, 200);
+            if (opener) opener.focus();
+        }
+
+        function esc(t) { return String(t).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+
+        Array.prototype.forEach.call(cards, function (card) {
+            card.addEventListener('click', function () { openProject(card.getAttribute('data-project'), card); });
+            card.addEventListener('keydown', function (e) {
+                if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openProject(card.getAttribute('data-project'), card); }
+            });
+        });
+        modal.addEventListener('click', function (e) { if (e.target.closest('[data-close]')) closeProject(); });
+        modal.querySelector('.pm-prev').addEventListener('click', function () { showImage(index - 1); });
+        modal.querySelector('.pm-next').addEventListener('click', function () { showImage(index + 1); });
+        document.addEventListener('keydown', function (e) {
+            if (modal.hidden) return;
+            if (e.key === 'Escape') closeProject();
+            else if (e.key === 'ArrowLeft') showImage(index - 1);
+            else if (e.key === 'ArrowRight') showImage(index + 1);
+        });
+        // swipe between pictures on phones
+        var startX = null;
+        stage.addEventListener('touchstart', function (e) { startX = e.touches[0].clientX; }, { passive: true });
+        stage.addEventListener('touchend', function (e) {
+            if (startX === null) return;
+            var dx = e.changedTouches[0].clientX - startX;
+            if (Math.abs(dx) > 40) showImage(index + (dx < 0 ? 1 : -1));
+            startX = null;
+        });
+    }
+
     // contact form: send in the background through FormSubmit, show the result on the page,
     // and fall back to a pre-filled email if sending fails, so no enquiry is lost.
     var form = document.getElementById('enquiryForm');
